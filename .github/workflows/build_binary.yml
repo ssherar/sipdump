@@ -3,10 +3,14 @@
 
 name: Build Binaries
 
+# on:
+#   push:
+#     tags:
+#       - "*"
+
 on:
   push:
-    tags:
-      - "*"
+    branches: ["main"]
 
 jobs:
 
