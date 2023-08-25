@@ -83,12 +83,6 @@ func (c Capture) StartPcap() (err error) {
 		packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
 
 		for packet := range packetSource.Packets() {
-			sip, ok := packet.Layer(layers.LayerTypeSIP).(*layers.SIP)
-			if !ok {
-				log.Println("Couldn't get SIP layer from packet")
-				continue
-			}
-			log.Println(sip.GetCallID(), sip.GetFrom(), sip.GetTo(), packet.Metadata().Timestamp.Local())
 			c.HandlePacket(packet)
 		}
 	}
