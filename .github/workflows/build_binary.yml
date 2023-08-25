@@ -35,7 +35,7 @@ jobs:
       run: |
         GOOS=${{ matrix.goos }}
         GOARCH=${{ matrix.goarch }}
-        BINARY_NAME=${{github.repository}}-$GOOS-$GOARCH
+        BINARY_NAME=sipdump-$GOOS-$GOARCH
         go build -v -o $BINARY_NAME
         echo "BINARY_NAME=$BINARY_NAME" >> $GITHUB_ENV
     
