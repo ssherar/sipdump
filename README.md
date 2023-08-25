@@ -12,6 +12,7 @@ While there is are other tools out there (such as [SipGrep](https://github.com/s
 
 ## Usage
 ```
+$ sipdump --help
 sipdump is a SIP capture tool that breaks up SIP calls into individual pcap files
 
 Usage:
@@ -24,6 +25,7 @@ Flags:
   -f, --filename-template string          Template for pcap filenames using golang Template strings. More info can be found in the README (default "{{.DateFormatted}}_{{.TimeFormatted}}_{{.From.Number}}_{{.To.Number}}_{{.CallID}}.pcap")
   -h, --help                              help for sipdump
   -i, --interface string                  Device to capture on
+  -n, --number string                     Number to be searched for in the from/to (regex friendly)
   -p, --promisc                           Promiscuous mode (default true)
   -s, --snaplen int32                     Snaplen (default 1600)
 ```
