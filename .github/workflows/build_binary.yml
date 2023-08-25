@@ -29,5 +29,5 @@ jobs:
     - name: Build
       run: |
         mkdir bin/${{ matrix.version }}
-        go build -v -o sipdump-${{ matrix.os }} ./...
+        go build -v -o bin/${{ matrix.version}}/sipdump-${{ matrix.os }} ./...
         
