@@ -32,8 +32,8 @@ type SIPMetadata struct {
 func NewSIPMetaData(sipLayer *layers.SIP, timestamp time.Time) *SIPMetadata {
 	sip := &SIPMetadata{
 		CallID:        sipLayer.GetCallID(),
-		From:          ProcessSipContactHeader(sipLayer.GetTo()),
-		To:            ProcessSipContactHeader(sipLayer.GetFrom()),
+		From:          ProcessSipContactHeader(sipLayer.GetFrom()),
+		To:            ProcessSipContactHeader(sipLayer.GetTo()),
 		DateFormatted: timestamp.Local().Format("20060102"),
 		TimeFormatted: timestamp.Local().Format("150405"),
 		Datetime:      timestamp,
