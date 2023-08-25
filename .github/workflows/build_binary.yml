@@ -40,7 +40,7 @@ jobs:
         echo "BINARY_NAME=$BINARY_NAME" >> $GITHUB_ENV
     
     - name: Archive binary
-      uses: actions/upload-artefact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{env.BINARY_NAME}}
         path: ${{env.BINARY_NAME}}
