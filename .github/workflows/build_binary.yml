@@ -30,7 +30,7 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
         sudo apt-get update -q
-        sudo apt-get install libpcap-dev gcc build-essentials
+        sudo apt-get install libpcap-dev gcc
 
     - name: Build
       run: |
