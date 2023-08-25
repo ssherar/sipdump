@@ -5,9 +5,8 @@ name: Build Binaries
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    tags:
+      - "*"
 
 jobs:
 
@@ -35,7 +34,7 @@ jobs:
       run: |
         GOOS=${{ matrix.goos }}
         GOARCH=${{ matrix.goarch }}
-        BINARY_NAME=sipdump-$GOOS-$GOARCH
+        BINARY_NAME=sipdump-$GITHUB_REF_NAME-$GOOS-$GOARCH
         go build -v -o $BINARY_NAME
         echo "BINARY_NAME=$BINARY_NAME" >> $GITHUB_ENV
     
@@ -44,3 +43,20 @@ jobs:
       with:
         name: ${{env.BINARY_NAME}}
         path: ${{env.BINARY_NAME}}
+
+  create_release:
+    runs-on: "ubuntu-latest"
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Make dist folder
+      run: mkdir -p dist
+
+    - uses: actions/download-artifact@v3
+      with:
+        path: ./dist
+
+    - name: Output the dir structure
+      run: ls -la ./dist
+
+    
