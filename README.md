@@ -53,7 +53,7 @@ Flags:
 - [ ] Dump to JSON (or have some JSON processing ability?)
 - [ ] Make it ERSPAN friendly?
 - [ ] Implement EEP protocol
-- [ ] Implement github actions to build and release binaries
+- [X] Implement github actions to build and release binaries
 
 ## Author
 * Sam Sherar <sbsherar@gmail.com>
