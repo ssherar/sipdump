@@ -95,6 +95,17 @@ func (c Capture) HandlePacket(packet gopacket.Packet) {
 	if !ok {
 		panic("Couldn't get SIP layer from packet")
 	}
+	sipMetadata := NewSIPMetaData(sip, packet.Metadata().Timestamp)
+
+	// Are we looking for a specific number and if so is this the number we are looking for
+	if c.Config.NumberSearch != "" {
+		found_to := c.Config.NumberRegex.MatchString(sipMetadata.To.Number)
+		found_from := c.Config.NumberRegex.MatchString(sipMetadata.From.Number)
+
+		if !(found_from || found_to) {
+			return
+		}
+	}
 
 	// Have we seen this call before?
 	record := c.CallTable.GetCall(sip.GetCallID())
@@ -122,7 +133,6 @@ func (c Capture) HandlePacket(packet gopacket.Packet) {
 		if record != nil {
 			path = record.Path
 		} else {
-			sipMetadata := NewSIPMetaData(sip, packet.Metadata().Timestamp)
 			fname, err := c.Config.PopulateFilenameTemplate(sipMetadata)
 			if err != nil {
 				log.Printf("Error populating filename template: %s", err)

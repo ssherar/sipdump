@@ -5,6 +5,7 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"regexp"
 	"text/template"
 
 	log "github.com/sirupsen/logrus"
@@ -19,6 +20,8 @@ type Config struct {
 	CallTableTimeout       uint32
 	FilenameTemplateString string
 	FilenameTemplate       *template.Template
+	NumberSearch           string
+	NumberRegex            *regexp.Regexp
 }
 
 func (c *Config) Validate() error {
@@ -37,6 +40,10 @@ func (c *Config) Validate() error {
 
 	if err = c.validatefilenametemplate(); err != nil {
 		return err
+	}
+
+	if err = c.validatenumberregex(); err != nil {
+
 	}
 
 	return nil
@@ -95,4 +102,19 @@ func (c *Config) PopulateFilenameTemplate(sip *SIPMetadata) (string, error) {
 	}
 
 	return filename.String(), nil
+}
+
+func (c *Config) validatenumberregex() error {
+	var err error
+
+	if len(c.NumberSearch) == 0 || c.NumberSearch == "" {
+		return nil
+	}
+
+	if c.NumberRegex, err = regexp.Compile(c.NumberSearch); err != nil {
+		return err
+	}
+	log.Println("Regex compiled, matching for to/from with the following regex", c.NumberSearch)
+
+	return nil
 }

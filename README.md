@@ -45,7 +45,7 @@ Flags:
 
 ## Todo list
 - [ ] Implement logrus to track sip CallIDs properly
-- [ ] Regex number matching both on to and froms
+- [X] Regex number matching both on to and froms
 - [ ] Capture RTP streams and save them to the pcap file
 - [ ] Capture RTCP streams and sav ethem to the pcap file
 - [ ] Dump to JSON (or have some JSON processing ability?)
