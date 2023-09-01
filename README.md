@@ -56,6 +56,7 @@ Flags:
 - [ ] Implement github actions to build and release binaries
 - [ ] Create an API for adding captures on the fly
 - [ ] Escrow up to s3 when completed
+- [X] Implement github actions to build and release binaries
 
 ## Author
 * Sam Sherar <sbsherar@gmail.com>
