@@ -54,6 +54,8 @@ Flags:
 - [ ] Make it ERSPAN friendly?
 - [ ] Implement EEP protocol
 - [ ] Implement github actions to build and release binaries
+- [ ] Create an API for adding captures on the fly
+- [ ] Escrow up to s3 when completed
 
 ## Author
 * Sam Sherar <sbsherar@gmail.com>
